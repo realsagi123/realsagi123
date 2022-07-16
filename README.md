@@ -10,7 +10,7 @@ else
     game:GetService("ReplicatedStorage").endpoints.client_to_server.vote_start:InvokeServer()
     repeat task.wait() until game:GetService("Workspace")["_waves_started"].Value == true
 end
-
+game.Players.LocalPlayer:Kick("ปิดอัพเดทโปรชั่วคราว")
 local HttpService = game:GetService("HttpService")
 local RunService = game:GetService("RunService")
 local mouse = game.Players.LocalPlayer:GetMouse()
