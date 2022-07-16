@@ -43,7 +43,7 @@ function sex()
 
     getgenv().SpawnUnitPos = data.xspawnUnitPos
     getgenv().SelectedUnits = data.xselectedUnits
-
+    getgenv().krnlfix = data.krnlfixsave
     ---// updates the json file
     function updatejson()
 
@@ -61,7 +61,8 @@ function sex()
             level = getgenv().level,
             door = getgenv().door,
             xspawnUnitPos = getgenv().SpawnUnitPos,
-            xselectedUnits = getgenv().SelectedUnits
+            xselectedUnits = getgenv().SelectedUnits,
+            krnlfixsave = getgenv().krnlfix
         }
 
         local json = HttpService:JSONEncode(xdata)
@@ -290,6 +291,9 @@ function sex()
             updatejson()
         end)
 
+        
+
+
         autofarmtab:Toggle("ขายตัวทึ้งอัตโนมัต", getgenv().autosell, function(x)
             getgenv().autosell = x
             updatejson()
@@ -400,6 +404,12 @@ function sex()
             getgenv().autoupgrade = bool
             updatejson()
         end)
+        
+     autofarmtab:Toggle("แก้บัคตัวรัน Krnl ไม่กลับ Lobby", getgenv().krnlfix, function(bool)
+            getgenv().krnlfix = bool
+            updatejson()
+        end)
+        
 
         function MouseClick(UnitPos)
             local connection
@@ -666,6 +676,20 @@ coroutine.resume(coroutine.create(function()
     end
 end))
 
+
+coroutine.resume(coroutine.create(function()
+   while task.wait() do
+      local Basexx = game:GetService("Workspace")["_BASES"].player.base["fake_unit"].Humanoid
+    if getgenv().krnlfix then  
+    if Basexx.Health <= 0 then
+    local ts = game:GetService("TeleportService")
+    local p = game:GetService("Players").LocalPlayer
+     ts:Teleport(8304191830, p)
+    end
+    end
+    end    
+end))
+
 ------// Auto Upgrade \\------
 coroutine.resume(coroutine.create(function()
     while task.wait() do
@@ -760,5 +784,4 @@ coroutine.resume(coroutine.create(function()
         end
     end
 end))
-
 
