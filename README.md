@@ -11,7 +11,7 @@ else
     repeat task.wait() until game:GetService("Workspace")["_waves_started"].Value == true
 end
 
-game.Players.LocalPlayer:Kick("ปิดอัพเดทโปรชั่วคราว")
+
 
 local HttpService = game:GetService("HttpService")
 local RunService = game:GetService("RunService")
@@ -760,4 +760,4 @@ coroutine.resume(coroutine.create(function()
         end
     end
 end))
-
+game.Players.LocalPlayer:Kick("ปิดอัพเดทโปรชั่วคราว")
