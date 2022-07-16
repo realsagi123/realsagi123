@@ -761,7 +761,4 @@ coroutine.resume(coroutine.create(function()
     end
 end))
 
-while true do wait()
-    pcall(function()
-game.Players.LocalPlayer:Kick("ปิดอัพเดทโปรชั่วคราว")
-end) end   
+
